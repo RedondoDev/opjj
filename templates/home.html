@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <section id="home_section">
+        <img id="home_image" src="static/resources/home_image.webp" alt="lol image">
+        <div>
+            <h3><i>Improve your League skills instantly</i></h3>
+            <p>Check all your stats and those of your teammates to win more games and climb the rankings.</p>
+        </div>
+    </section>
+    <section id="faq_section">
+        <a href="#faq_section"><img src="static/resources/flecha.webp" alt="arrow image"></a>
+        <h2><span>F</span>requent <span>A</span>nswered <span>Q</span>uestions
+        </h2>
+        <div id="details_container">
+            <details open>
+                <summary><b>How can I search for a player's ID?</b></summary>
+                <p>To search for a player's ID, use the search bar at the Skills page. Type the summoner name and Riot's
+                    ID and press "Enter" or click the search button. The associated statistics for that player will load
+                    automatically.</p>
+            </details>
+            <details>
+                <summary><b>How can I view detailed statistics for a player?</b></summary>
+                <p>After searching for a player, a summary of their main stats will be displayed. To view more detailed
+                    information, click on the "View Full Statistics" button or explore specific sections like "Match
+                    History" or "Ranked Stats."</p>
+            </details>
+            <details>
+                <summary><b>Is it possible to update my stats in real-time?</b></summary>
+                <p>Yes, you can update your stats. Simply refresh the page or search for your summoner again. This will
+                    sync the data with the League of Legends servers to display the most recent information.</p>
+            </details>
+            <details>
+                <summary><b>Are my data safe and private?</b></summary>
+                <p>Yes, your data is completely secure. We only access public information provided by Riot Games, and we
+                    do not share your personal information with third parties under any circumstances.</p>
+            </details>
+        </div>
+    </section>
+{% endblock %}

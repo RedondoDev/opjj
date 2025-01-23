@@ -1,0 +1,9 @@
+{% block nav_bar %}
+<nav>
+    <a href="{{url_for('show_home')}}"><img src="{{url_for('static', filename='/resources/logo.webp')}}"
+                                            alt="logo image"></a></li>
+    <a id="home" href="{{url_for('show_home')}}">Home</a>
+    <a id="stats" href="{{url_for('show_stats')}}">Stats</a>
+    <a id="about_me" href="{{url_for('show_about_me')}}">About me</a>
+</nav>
+{% endblock %}

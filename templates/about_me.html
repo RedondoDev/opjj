@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}About Me{% endblock %}
+
+{% block content %}
+<section id="about_me_section">
+    <div>
+        <h2><i>About Me</i></h2>
+        <p>Hi! I'm <span><b>Javier Redondo</b></span>, the creator of this League of Legends statistics platform.
+            I'm a software developer passionate about building tools that provide value and simplify complex
+            processes. As a dedicated League of Legends player, I understand the importance of tracking performance
+            and progress to improve your gameplay. That’s why I created this platform—to help you analyze your
+            stats, compare with others, and stay informed about your journey on the Rift.</p>
+        <p>If you have any questions or feedback about this platform, feel free to contact me at <a
+                href="https://www.linkedin.com/in/javier-redondo-fern%C3%A1ndez-680957285/"
+                target="_blank">LinkedIn</a>. I’d love to hear from you!
+        </p>
+    </div>
+    <img src="{{url_for('static', filename='resources/about_me_image.webp')}}" alt="Akali image">
+</section>
+<section id="contact_me_section">
+    <h2><span>Contact</span></h2>
+    <form action="/about_me/comment" method="post">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" autocomplete="off" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" autocomplete="off" required>
+        </div>
+        <div class="form-group">
+            <label for="comment">Message:</label>
+            <textarea id="comment" name="comment" autocomplete="off" required></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit">Send</button>
+        </div>
+    </form>
+    <img id="contact_image" src="{{url_for('static', filename='resources/contact_image.webp')}}" alt="Riven image">
+</section>
+{% endblock %}
