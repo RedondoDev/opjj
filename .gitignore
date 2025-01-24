@@ -77,6 +77,8 @@ celerybeat.pid
 
 *.sage.py
 
+instance
+
 *.env
 .venv
 env/
