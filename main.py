@@ -66,7 +66,7 @@ def show_home():
 
 @app.route('/stats')
 def show_stats():
-    return render_template('home.html')
+    return render_template('stats.html', API_KEY=os.getenv("API_KEY"))
 
 
 @app.route('/about_me')

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Stats{% endblock %}
+
+{% block content %}
+<script>const API_KEY = "{{ API_KEY }}";</script>
+
+<section id="top_section">
+    <h2>Compare with anybody</h2>
+    <p>Enter the summoner name and region of the player you want to compare with. You can also select the type of stats
+        you want to compare.</p>
+    <select name="region1" id="region1">
+        <option value="" selected disabled hidden>Region</option>
+        <option value="americas">AMERICAS</option>
+        <option value="asia">ASIA</option>
+        <option value="europe">EUROPE</option>
+    </select>
+    <input type="text" name="gameName1" id="gameName1" placeholder="Username">
+    <input type="text" name="tagLine1" id="tagLine1" placeholder="Tag">
+    <button type="submit" onclick="getRiotPuuids()">Compare</button>
+    <select name="region2" id="region2">
+        <option value="" selected disabled hidden>Region</option>
+        <option value="americas">AMERICAS</option>
+        <option value="asia">ASIA</option>
+        <option value="europe">EUROPE</option>
+    </select>
+    <input type="text" name="gameName2" id="gameName2" placeholder="Username">
+    <input type="text" name="tagLine2" id="tagLine2" placeholder="Tag">
+</section>
+<section id="bot_section">
+    <div class="tab">
+        <button class="tablinks" data-tab="Account">Account</button>
+        <button class="tablinks" data-tab="Ranked">Ranked</button>
+        <button class="tablinks" data-tab="Mastery">Mastery</button>
+    </div>
+    <div id="Account" class="tabcontent">
+        <h3>Account</h3>
+        <div id="accountCard">
+
+        </div>
+    </div>
+    <div id="Ranked" class="tabcontent">
+        <h3>Ranked</h3>
+        <div id="rankedCard">
+
+        </div>
+    </div>
+    <div id="Mastery" class="tabcontent">
+        <h3>Mastery</h3>
+        <div id="masteryCard">
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}
