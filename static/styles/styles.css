@@ -387,13 +387,31 @@ footer {
 }
 
 #bot_section {
+    margin: 0;
+    height: 70vh;
+    background-color: #202E39;
+}
+
+#hidden_container {
     visibility: hidden;
+    margin: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    height: 70vh;
+    position: relative;
 }
 
 .tab {
     overflow: hidden;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 2;
 }
 
 .tab button {
@@ -431,3 +449,46 @@ footer {
     }
 }
 
+#Account {
+    width: 100%;
+    height: 50vh;
+    background-color: #9C1A1C;
+    padding: 60px 100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+
+    h3 {
+        text-align: center;
+        font-size: 28px;
+    }
+
+}
+
+#accountCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    height: 30vh;
+    background-color: #3A7734;
+    margin: 20px auto 0;
+}
+
+#oneSummAccount {
+    background-color: #11557C;
+    height: 100%;
+    width: 40%;
+    padding: 4%;
+}
+
+#twoSummAccount {
+    background-color: #11557C;
+    height: 100%;
+    width: 40%;
+    padding: 4%;
+}

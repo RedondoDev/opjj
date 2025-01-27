@@ -54,9 +54,9 @@ async function fetchHiddenIds(summoner) {
     };
 
     for (let subregion of SUBREGIONS[summoner.region.toLowerCase()]) {
-        let url = `https://${subregion}.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/${summoner.puuid}?api_key=${API_KEY}`;
+        const url = `https://${subregion}.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/${summoner.puuid}?api_key=${API_KEY}`;
         try {
-            let response = await fetch(url);
+            const response = await fetch(url);
             if (response.ok) {
                 let summonerData = await response.json();
                 console.log(`Found in ${subregion}:`, summonerData);
@@ -76,7 +76,23 @@ async function fetchHiddenIds(summoner) {
 async function getHiddenIds(summoner1, summoner2) {
     let summoners = [summoner1, summoner2];
     await Promise.all(summoners.map(summoner => fetchHiddenIds(summoner)));
-    let bot_section = document.getElementById("bot_section");
+
+    let bot_section = document.getElementById("hidden_container");
     bot_section.style.visibility = "visible";
+
+    let name1 = document.getElementById("oneName");
+    name1.innerText = `${summoner1.gameName}#${summoner1.tagLine}`;
+    let level1 = document.getElementById("oneLevel");
+    level1.innerText = `Level ${summoner1.lvl}`;
+    let region1 = document.getElementById("oneRegion");
+    region1.innerText = summoner1.region.toUpperCase();
+
+    let name2 = document.getElementById("twoName");
+    name2.innerText = `${summoner2.gameName}#${summoner2.tagLine}`;
+    let level2 = document.getElementById("twoLevel");
+    level2.innerText = `Level ${summoner2.lvl}`;
+    let region2 = document.getElementById("twoRegion");
+    region2.innerText = summoner2.region.toUpperCase();
+
     console.log(summoners);
 }

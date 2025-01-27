@@ -27,27 +27,50 @@
     <input type="text" name="tagLine2" id="tagLine2" placeholder="Tag">
 </section>
 <section id="bot_section">
-    <div class="tab">
-        <button class="tablinks" data-tab="Account">Account</button>
-        <button class="tablinks" data-tab="Ranked">Ranked</button>
-        <button class="tablinks" data-tab="Mastery">Mastery</button>
-    </div>
-    <div id="Account" class="tabcontent">
-        <h3>Account</h3>
-        <div id="accountCard">
-
+    <div id="hidden_container">
+        <div class="tab">
+            <button class="tablinks" data-tab="Account">Account</button>
+            <button class="tablinks" data-tab="Ranked">Ranked</button>
+            <button class="tablinks" data-tab="Mastery">Mastery</button>
         </div>
-    </div>
-    <div id="Ranked" class="tabcontent">
-        <h3>Ranked</h3>
-        <div id="rankedCard">
-
+        <div id="Account" class="tabcontent">
+            <h3>Account</h3>
+            <div id="accountCard">
+                <div id="oneSummAccount">
+                    <div id="sum1MiniLeft">
+                        <h4 id="oneName">Name</h4>
+                        <img id="summ1Icon" src="">
+                    </div>
+                    <div id="sum1MiniRight">
+                        <h4 id="oneLevel">Level</h4>
+                        <h4 id="oneRegion">Region</h4>
+                        <h4 id="oneRank">Rank</h4>
+                    </div>
+                </div>
+                <div id="twoSummAccount">
+                    <div id="sum2MiniLeft">
+                        <h4 id="twoName">Name</h4>
+                        <img id="summ2Icon" src="">
+                    </div>
+                    <div id="sum2MiniRight">
+                        <h4 id="twoLevel">Level</h4>
+                        <h4 id="twoRegion">Region</h4>
+                        <h4 id="twoRank">Rank</h4>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div id="Mastery" class="tabcontent">
-        <h3>Mastery</h3>
-        <div id="masteryCard">
+        <div id="Ranked" class="tabcontent">
+            <h3>Ranked</h3>
+            <div id="rankedCard">
 
+            </div>
+        </div>
+        <div id="Mastery" class="tabcontent">
+            <h3>Mastery</h3>
+            <div id="masteryCard">
+
+            </div>
         </div>
     </div>
 </section>
