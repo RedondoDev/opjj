@@ -84,21 +84,59 @@ async function fetchSoloQStats(summoner) {
         const response = await fetch(url);
         if (response.ok) {
             let rankedStats = await response.json();
-            rankedStats.forEach(stat => {
-                if (stat.queueType === "RANKED_SOLO_5x5") {
-                    summoner.rankedStats[0] = {
-                        tier: stat.tier,
-                        rank: stat.rank,
-                        leaguePoints: stat.leaguePoints,
-                        wins: stat.wins,
-                        losses: stat.losses,
-                        inactive: stat.inactive,
-                        freshBlood: stat.freshBlood,
-                        hotStreak: stat.hotStreak,
-                        queueType: stat.queueType
-                    };
-                }
-            });
+            if (rankedStats.length === 0) {
+                summoner.rankedStats[0] = {
+                    tier: "UNRANKED",
+                    rank: "",
+                    leaguePoints: "0",
+                    wins: 0,
+                    losses: 0,
+                    inactive: true,
+                    freshBlood: "",
+                    hotStreak: "",
+                    queueType: "RANKED_SOLO_5x5"
+                };
+                summoner.rankedStats[1] = {
+                    tier: "UNRANKED",
+                    rank: "",
+                    leaguePoints: "0",
+                    wins: 0,
+                    losses: 0,
+                    inactive: true,
+                    freshBlood: "",
+                    hotStreak: "",
+                    queueType: "RANKED_FLEX_5x5"
+                };
+            } else {
+                rankedStats.forEach(stat => {
+                    if (stat.queueType === "RANKED_SOLO_5x5") {
+                        summoner.rankedStats[0] = {
+                            tier: stat.tier,
+                            rank: stat.rank,
+                            leaguePoints: stat.leaguePoints,
+                            wins: stat.wins,
+                            losses: stat.losses,
+                            inactive: stat.inactive,
+                            freshBlood: stat.freshBlood,
+                            hotStreak: stat.hotStreak,
+                            queueType: stat.queueType
+                        };
+                    } else {
+                        summoner.rankedStats[1] = {
+                            tier: stat.tier,
+                            rank: stat.rank,
+                            leaguePoints: stat.leaguePoints,
+                            wins: stat.wins,
+                            losses: stat.losses,
+                            inactive: stat.inactive,
+                            freshBlood: stat.freshBlood,
+                            hotStreak: stat.hotStreak,
+                            queueType: stat.queueType
+                        };
+                    }
+                });
+            }
+            console.log(`Found ranked stats:`, summoner.rankedStats[0]);
         } else {
             console.log(`No ranked stats found, response code: ${response.status}`);
         }
@@ -174,7 +212,7 @@ async function getHiddenIds(summoner1, summoner2) {
     } finally {
         let bot_section = document.getElementById("hidden_container");
         bot_section.style.visibility = "visible";
-                document.querySelector(".tab button[data-tab='Summoner']").click();
+        document.querySelector(".tab button[data-tab='Summoner']").click();
 
     }
 }

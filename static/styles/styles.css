@@ -451,7 +451,7 @@ body main.stats_main {
         height: 4.5vh;
         padding: 0.5%;
         margin: 0 1%;
-        border: 3px solid #323D45;
+        border: 2px solid #323D45;
         background-color: #df2d1c;
         color: #EBF4FA;
         font-size: 1.1vw;
@@ -518,7 +518,7 @@ body main.stats_main {
 .tab button.active {
     background-color: #18222b;
     color: #df2d1c;
-    border: 1px solid #EBF4FA;
+    border: 1px solid #b5babd;
 }
 
 .tabcontent {
