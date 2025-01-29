@@ -386,8 +386,8 @@ footer {
 }
 
 body main.stats_main {
-    height: auto !important;
-    overflow: hidden !important;
+    height: auto;
+    overflow: hidden;
 }
 
 #top_section {
