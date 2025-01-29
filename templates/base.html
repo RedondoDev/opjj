@@ -13,9 +13,9 @@
 </head>
 <body>
 {% include "nav_bar.html" %}
-<main class="{% block main_class %}{% endblock %}">
+<main>
     {% block content %}{% endblock %}
-    {% include "footer.html" %}
 </main>
+{% include "footer.html" %}
 </body>
 </html>

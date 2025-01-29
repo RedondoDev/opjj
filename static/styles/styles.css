@@ -8,20 +8,11 @@
 html {
     scroll-behavior: smooth;
 
-    > ::-webkit-scrollbar {
-        display: none;
-    }
-
-}
-
-
-body {
-    font-family: Nunito, sans-serif;
-    color: #202E39;
+    min-height: 100%;
+    position: relative;
 
     ::-webkit-scrollbar {
-        display: unset;
-        width: 15px;
+        width: 12px;
         background-color: #323D45;
     }
 
@@ -36,10 +27,9 @@ body {
 }
 
 
-main {
-    scroll-behavior: smooth;
-    overflow-y: scroll;
-    height: 88vh;
+body {
+    font-family: Nunito, sans-serif;
+    color: #202E39;
 }
 
 
@@ -378,6 +368,7 @@ footer {
     color: #202E39;
     opacity: 95%;
     font-size: 1.2vw;
+    overflow: hidden;
 
     a {
         text-decoration: underline;
@@ -385,10 +376,6 @@ footer {
     }
 }
 
-body main.stats_main {
-    height: auto;
-    overflow: hidden;
-}
 
 #top_section {
     height: 22vh;
@@ -465,20 +452,32 @@ body main.stats_main {
 }
 
 #bot_section {
+    position: relative;
     margin: 0;
-    height: 55vh;
+    height: 70vh;
     background-color: #202E39;
+    overflow: hidden;
+
+    > img {
+        object-fit: cover;
+        margin: 0;
+        top: 0;
+        height: 100%;
+        width: 100dvw;
+        position: absolute;
+        filter: brightness(90%);
+    }
 }
 
 #hidden_container {
     visibility: hidden;
     margin: 0;
     top: 0;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
-    height: 70vh;
+    justify-content: center;
     position: relative;
 }
 
@@ -537,7 +536,7 @@ body main.stats_main {
     }
 }
 
-#Summoner, #SoloQ {
+#Summoner, #SoloQ, FlexQ {
     width: 100%;
     height: 50vh;
     padding: 100px;
@@ -547,13 +546,18 @@ body main.stats_main {
     align-items: center;
     justify-content: center;
     z-index: 1;
+    display: none;
 
     h3 {
         text-align: center;
-        font-size: 28px;
-        color: #EBF4EE;
+        font-size: 33px;
+        color: #202E39;
     }
 
+}
+
+#Summoner.tabcontent {
+    height: 100vh;
 }
 
 #accountCard, #rankedCard {

@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Stats{% endblock %}
 
-{% block main_class %}stats_main{% endblock %}
-
 {% block content %}
 <script>const API_KEY = "{{ API_KEY }}";</script>
 <section id="top_section">
@@ -30,6 +28,7 @@
     </div>
 </section>
 <section id="bot_section">
+    <img src="{{url_for('static', filename='/resources/stats_image.webp')}}">
     <div id="hidden_container">
         <div class="tab">
             <button class="tablinks" data-tab="Summoner">Summoner</button>
