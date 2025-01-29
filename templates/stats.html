@@ -1,40 +1,43 @@
 {% extends "base.html" %}
 {% block title %}Stats{% endblock %}
 
+{% block main_class %}stats_main{% endblock %}
+
 {% block content %}
 <script>const API_KEY = "{{ API_KEY }}";</script>
-
 <section id="top_section">
     <h2>Compare with anybody</h2>
     <p>Enter the summoner name and region of the player you want to compare with. You can also select the type of stats
         you want to compare.</p>
-    <select name="region1" id="region1">
-        <option value="" selected disabled hidden>Region</option>
-        <option value="americas">AMERICAS</option>
-        <option value="asia">ASIA</option>
-        <option value="europe">EUROPE</option>
-    </select>
-    <input type="text" name="gameName1" id="gameName1" placeholder="Username">
-    <input type="text" name="tagLine1" id="tagLine1" placeholder="Tag">
-    <button type="submit" onclick="getRiotPuuids()">Compare</button>
-    <select name="region2" id="region2">
-        <option value="" selected disabled hidden>Region</option>
-        <option value="americas">AMERICAS</option>
-        <option value="asia">ASIA</option>
-        <option value="europe">EUROPE</option>
-    </select>
-    <input type="text" name="gameName2" id="gameName2" placeholder="Username">
-    <input type="text" name="tagLine2" id="tagLine2" placeholder="Tag">
+    <div id="input_container">
+        <select name="region1" id="region1">
+            <option value="" selected disabled hidden>Region</option>
+            <option value="americas">AMERICAS</option>
+            <option value="asia">ASIA</option>
+            <option value="europe">EUROPE</option>
+        </select>
+        <input type="text" name="gameName1" id="gameName1" placeholder="Username">
+        <input type="text" name="tagLine1" id="tagLine1" placeholder="Tag">
+        <button type="submit" onclick="getRiotPuuids()">Compare</button>
+        <select name="region2" id="region2">
+            <option value="" selected disabled hidden>Region</option>
+            <option value="americas">AMERICAS</option>
+            <option value="asia">ASIA</option>
+            <option value="europe">EUROPE</option>
+        </select>
+        <input type="text" name="gameName2" id="gameName2" placeholder="Username">
+        <input type="text" name="tagLine2" id="tagLine2" placeholder="Tag">
+    </div>
 </section>
 <section id="bot_section">
     <div id="hidden_container">
         <div class="tab">
-            <button class="tablinks" data-tab="Account">Account</button>
-            <button class="tablinks" data-tab="Ranked">Ranked</button>
-            <button class="tablinks" data-tab="Mastery">Mastery</button>
+            <button class="tablinks" data-tab="Summoner">Summoner</button>
+            <button class="tablinks" data-tab="SoloQ">Solo Q</button>
+            <button class="tablinks" data-tab="FlexQ">Flex Q</button>
         </div>
-        <div id="Account" class="tabcontent">
-            <h3>Account</h3>
+        <div id="Summoner" class="tabcontent">
+            <h3>Summoner</h3>
             <div id="accountCard">
                 <div id="oneSummAccount" class="js-tilt">
                     <div id="sum1MiniLeft">
@@ -58,8 +61,8 @@
                 </div>
             </div>
         </div>
-        <div id="Ranked" class="tabcontent">
-            <h3>Ranked</h3>
+        <div id="SoloQ" class="tabcontent">
+            <h3>Solo Q</h3>
             <div id="rankedCard">
                 <div id="oneSummRank" class="js-tilt">
                     <div id="sum1MiniLeftRank">
@@ -87,10 +90,9 @@
                 </div>
             </div>
         </div>
-        <div id="Mastery" class="tabcontent">
+        <div id="FlexQ" class="tabcontent">
             <h3>Mastery</h3>
-            <div id="masteryCard">
-
+            <div id="flexQCard">
             </div>
         </div>
     </div>

@@ -174,7 +174,7 @@ async function getHiddenIds(summoner1, summoner2) {
     } finally {
         let bot_section = document.getElementById("hidden_container");
         bot_section.style.visibility = "visible";
-                document.querySelector(".tab button[data-tab='Account']").click();
+                document.querySelector(".tab button[data-tab='Summoner']").click();
 
     }
 }
