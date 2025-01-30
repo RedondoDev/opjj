@@ -536,10 +536,10 @@ footer {
     }
 }
 
-#Summoner, #SoloQ, FlexQ {
+#Summoner, #SoloQ, #FlexQ {
     width: 100%;
     height: 50vh;
-    padding: 100px;
+    padding: 150px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -556,7 +556,9 @@ footer {
 
 }
 
-#Summoner.tabcontent {
+#Summoner.tabcontent,
+#SoloQ.tabcontent,
+#FlexQ.tabcontent {
     height: 100vh;
 }
 
@@ -567,23 +569,64 @@ footer {
     align-items: center;
     width: 80%;
     height: 30vh;
-    margin: 20px auto 0;
+    margin: 30px auto 0;
 
     img {
-        width: 30%;
+        width: 35%;
         border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.45);
     }
 
 }
 
 #oneSummAccount, #twoSummAccount, #oneSummRank, #twoSummRank {
-    background-color: #f1f6f2;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto;
     width: 40%;
-    padding: 4%;
-    border-radius: 5px;
+    color: #EBF4FA;
+    text-shadow: black 0.1em 0.1em 0.2em;
+    padding: 3% 3% 2%;
+    background: rgba(255, 255, 255, 0.11);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border: 2px solid rgba(255, 255, 255, 0.55);
+}
+
+#sum1BigTop, #sum2BigTop {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 30px;
+}
+
+#sum1TopRight, #sum2TopRight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    height: 60%;
+    font-size: 1.2vw;
+    text-align: end;
+    gap: 1%;
+
+    h4 {
+        width: 100%;
+    }
+}
+
+#sum1BotLeft, #sum2BotLeft {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.2vw;
 }
 
 #oneImageTier, #twoImageTier {
-    width: 30%;
+    width: 40%;
 }

@@ -85,55 +85,35 @@ async function fetchSoloQStats(summoner) {
         if (response.ok) {
             let rankedStats = await response.json();
             if (rankedStats.length === 0) {
-                summoner.rankedStats[0] = {
-                    tier: "UNRANKED",
-                    rank: "",
-                    leaguePoints: "0",
-                    wins: 0,
-                    losses: 0,
-                    inactive: true,
-                    freshBlood: "",
-                    hotStreak: "",
-                    queueType: "RANKED_SOLO_5x5"
-                };
-                summoner.rankedStats[1] = {
-                    tier: "UNRANKED",
-                    rank: "",
-                    leaguePoints: "0",
-                    wins: 0,
-                    losses: 0,
-                    inactive: true,
-                    freshBlood: "",
-                    hotStreak: "",
-                    queueType: "RANKED_FLEX_5x5"
-                };
+                await addDefaultStats(summoner);
             } else {
                 rankedStats.forEach(stat => {
-                    if (stat.queueType === "RANKED_SOLO_5x5") {
-                        summoner.rankedStats[0] = {
-                            tier: stat.tier,
-                            rank: stat.rank,
-                            leaguePoints: stat.leaguePoints,
-                            wins: stat.wins,
-                            losses: stat.losses,
-                            inactive: stat.inactive,
-                            freshBlood: stat.freshBlood,
-                            hotStreak: stat.hotStreak,
-                            queueType: stat.queueType
-                        };
-                    } else {
-                        summoner.rankedStats[1] = {
-                            tier: stat.tier,
-                            rank: stat.rank,
-                            leaguePoints: stat.leaguePoints,
-                            wins: stat.wins,
-                            losses: stat.losses,
-                            inactive: stat.inactive,
-                            freshBlood: stat.freshBlood,
-                            hotStreak: stat.hotStreak,
-                            queueType: stat.queueType
-                        };
-                    }
+                    summoner.rankedStats.push(stat);
+                    // if (stat.queueType === "RANKED_SOLO_5x5") {
+                    //     summoner.rankedStats[0] = {
+                    //         tier: stat.tier,
+                    //         rank: stat.rank,
+                    //         leaguePoints: stat.leaguePoints,
+                    //         wins: stat.wins,
+                    //         losses: stat.losses,
+                    //         inactive: stat.inactive,
+                    //         freshBlood: stat.freshBlood,
+                    //         hotStreak: stat.hotStreak,
+                    //         queueType: stat.queueType
+                    //     };
+                    // } else {
+                    //     summoner.rankedStats[1] = {
+                    //         tier: stat.tier,
+                    //         rank: stat.rank,
+                    //         leaguePoints: stat.leaguePoints,
+                    //         wins: stat.wins,
+                    //         losses: stat.losses,
+                    //         inactive: stat.inactive,
+                    //         freshBlood: stat.freshBlood,
+                    //         hotStreak: stat.hotStreak,
+                    //         queueType: stat.queueType
+                    //     };
+                    // }
                 });
             }
             console.log(`Found ranked stats:`, summoner.rankedStats[0]);
@@ -147,7 +127,9 @@ async function fetchSoloQStats(summoner) {
 
 function showSummonners(summoners) {
     let name1 = document.getElementById("oneName");
-    name1.innerText = `${summoners[0].gameName}#${summoners[0].tagLine}`;
+    name1.innerText = `${summoners[0].gameName}`;
+    let tag1 = document.getElementById("oneTag");
+    tag1.innerText = `#${summoners[0].tagLine}`;
     let level1 = document.getElementById("oneLevel");
     level1.innerText = `Level ${summoners[0].lvl}`;
     let region1 = document.getElementById("oneRegion");
@@ -156,7 +138,9 @@ function showSummonners(summoners) {
     image1.src = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/${summoners[0].profileIconId}.jpg`;
 
     let name2 = document.getElementById("twoName");
-    name2.innerText = `${summoners[1].gameName}#${summoners[1].tagLine}`;
+    name2.innerText = `${summoners[1].gameName}`;
+    let tag2 = document.getElementById("twoTag");
+    tag2.innerText = `#${summoners[1].tagLine}`;
     let level2 = document.getElementById("twoLevel");
     level2.innerText = `Level ${summoners[1].lvl}`;
     let region2 = document.getElementById("twoRegion");
@@ -167,7 +151,9 @@ function showSummonners(summoners) {
 
 function showSoloQStats(summoners) {
     let name1 = document.getElementById("oneNameRank");
-    name1.innerText = `${summoners[0].gameName}#${summoners[0].tagLine}`;
+    name1.innerText = `${summoners[0].gameName}`;
+    let tag1 = document.getElementById("oneTagRank");
+    tag1.innerText = `#${summoners[0].tagLine}`;
     let lps1 = document.getElementById("oneLps");
     lps1.innerText = `${summoners[0].rankedStats[0].leaguePoints} LPs`;
     let rank1 = document.getElementById("oneRank");
@@ -180,7 +166,9 @@ function showSoloQStats(summoners) {
     image1.src = `static/resources/ranks/${summoners[0].rankedStats[0].tier}.webp`;
 
     let name2 = document.getElementById("twoNameRank");
-    name2.innerText = `${summoners[1].gameName}#${summoners[1].tagLine}`;
+    name2.innerText = `${summoners[1].gameName}`;
+    let tag2 = document.getElementById("twoTagRank");
+    tag2.innerText = `#${summoners[1].tagLine}`;
     let lps2 = document.getElementById("twoLps");
     lps2.innerText = `${summoners[1].rankedStats[0].leaguePoints} LPs`;
     let rank2 = document.getElementById("twoRank");
@@ -217,4 +205,27 @@ async function getHiddenIds(summoner1, summoner2) {
     }
 }
 
-
+async function addDefaultStats(summoner) {
+    summoner.rankedStats[0] = {
+                    tier: "UNRANKED",
+                    rank: "",
+                    leaguePoints: "0",
+                    wins: 0,
+                    losses: 0,
+                    inactive: true,
+                    freshBlood: "",
+                    hotStreak: "",
+                    queueType: "RANKED_SOLO_5x5"
+                };
+                summoner.rankedStats[1] = {
+                    tier: "UNRANKED",
+                    rank: "",
+                    leaguePoints: "0",
+                    wins: 0,
+                    losses: 0,
+                    inactive: true,
+                    freshBlood: "",
+                    hotStreak: "",
+                    queueType: "RANKED_FLEX_5x5"
+                };
+}
