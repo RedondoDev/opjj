@@ -131,8 +131,8 @@ function showSummonners(summoners) {
 function showSoloQStats(summoners) {
     let name1 = document.getElementById("oneNameRank");
     name1.innerText = `${summoners[0].gameName} #${summoners[0].tagLine}`;
-    let lps1 = document.getElementById("oneLps");
-    lps1.innerText = `${summoners[0].rankedStats[0].leaguePoints} LPs`;
+    let lps1 = document.getElementById("span1Lps");
+    lps1.innerText = `${summoners[0].rankedStats[0].leaguePoints}`;
     let tier1 = document.getElementById("oneRank");
     tier1.innerText = `${summoners[0].rankedStats[0].tier} ${summoners[0].rankedStats[0].rank}`;
     let wins1 = document.getElementById("oneWins");
@@ -140,30 +140,99 @@ function showSoloQStats(summoners) {
     let losses1 = document.getElementById("oneLosses");
     losses1.innerText = `L: ${summoners[0].rankedStats[0].losses}`;
     let games1 = document.getElementById("oneGames");
-    games1.innerText = `T: ${(summoners[0].rankedStats[0].wins + summoners[0].rankedStats[0].losses)};`
+    games1.innerText = `G: ${(summoners[0].rankedStats[0].wins + summoners[0].rankedStats[0].losses)}`
     let winRate = (summoners[0].rankedStats[0].wins / (summoners[0].rankedStats[0].wins + summoners[0].rankedStats[0].losses)) * 100;
-    let wr1 = document.getElementById("oneWR");
-    wr1.innerText = `W/R: ${winRate.toFixed(2)}%`;
+    let wr1 = document.getElementById("span1WR");
+    wr1.innerText = `${winRate.toFixed(2)}%`;
+    let floatWinRate1 = parseFloat(wr1.innerText);
+    stylesIfNan(wr1, floatWinRate1);
     let image1 = document.getElementById("oneImageTier");
     image1.src = `static/resources/ranks/${summoners[0].rankedStats[0].tier}.png`;
 
     let name2 = document.getElementById("twoNameRank");
-    name2.innerText = `${summoners[1].gameName}`;
-    let tag2 = document.getElementById("twoTagRank");
-    tag2.innerText = `#${summoners[1].tagLine}`;
-    let lps2 = document.getElementById("twoLps");
-    lps2.innerText = `${summoners[1].rankedStats[0].leaguePoints} LPs`;
-    let rank2 = document.getElementById("twoRank");
-    rank2.innerText = summoners[1].rankedStats[0].rank;
-    let tier2 = document.getElementById("twoTier");
-    tier2.innerText = summoners[1].rankedStats[0].tier;
-    let queue2 = document.getElementById("twoQueue");
-    queue2.innerText = summoners[1].rankedStats[0].queueType;
+    name2.innerText = `${summoners[1].gameName} #${summoners[1].tagLine}`;
+    let lps2 = document.getElementById("span2Lps");
+    lps2.innerText = `${summoners[1].rankedStats[0].leaguePoints}`;
+    let tier2 = document.getElementById("twoRank");
+    tier2.innerText = `${summoners[1].rankedStats[0].tier} ${summoners[1].rankedStats[0].rank}`;
+    let wins2 = document.getElementById("twoWins");
+    wins2.innerText = `W: ${summoners[1].rankedStats[0].wins}`;
+    let losses2 = document.getElementById("twoLosses");
+    losses2.innerText = `L: ${summoners[1].rankedStats[0].losses}`;
+    let games2 = document.getElementById("twoGames");
+    games2.innerText = `G: ${(summoners[1].rankedStats[0].wins + summoners[1].rankedStats[0].losses)}`
+    let winRate2 = (summoners[1].rankedStats[0].wins / (summoners[1].rankedStats[0].wins + summoners[1].rankedStats[0].losses)) * 100;
+    let wr2 = document.getElementById("span2WR");
+    wr2.innerText = `${winRate2.toFixed(2)}%`;
+    let floatWinRate2 = parseFloat(wr2.innerText);
+    stylesIfNan(wr2, floatWinRate2);
     let image2 = document.getElementById("twoImageTier");
-    image2.src = `static/resources/ranks/${summoners[1].rankedStats[0].tier}.webp`;
+    image2.src = `static/resources/ranks/${summoners[1].rankedStats[0].tier}.png`;
 
     console.log(summoners[0].rankedStats[0]);
     console.log(summoners[1].rankedStats[0]);
+}
+
+
+function showFlexQStats(summoners) {
+    let name1f = document.getElementById("oneNameFlex");
+    name1f.innerText = `${summoners[0].gameName} #${summoners[0].tagLine}`;
+    let lps1f = document.getElementById("span1LpsFlex");
+    lps1f.innerText = `${summoners[0].rankedStats[1].leaguePoints}`;
+    let tier1f = document.getElementById("oneRankFlex");
+    tier1f.innerText = `${summoners[0].rankedStats[1].tier} ${summoners[0].rankedStats[1].rank}`;
+    let wins1f = document.getElementById("oneWinsFlex");
+    wins1f.innerText = `W: ${summoners[0].rankedStats[1].wins}`;
+    let losses1f = document.getElementById("oneLossesFlex");
+    losses1f.innerText = `L: ${summoners[0].rankedStats[1].losses}`;
+    let games1f = document.getElementById("oneGamesFlex");
+    games1f.innerText = `G: ${(summoners[0].rankedStats[1].wins + summoners[0].rankedStats[1].losses)}`
+    let winRatef = (summoners[0].rankedStats[1].wins / (summoners[0].rankedStats[1].wins + summoners[0].rankedStats[1].losses)) * 100;
+    let wr1f = document.getElementById("span1WRFlex");
+    wr1f.innerText = `${winRatef.toFixed(2)}%`;
+    let floatWinRate1f = parseFloat(wr1f.innerText);
+    stylesIfNan(wr1f, floatWinRate1f);
+    let image1f = document.getElementById("oneImageTierFlex");
+    image1f.src = `static/resources/ranks/${summoners[0].rankedStats[1].tier}.png`;
+
+    let name2f = document.getElementById("twoNameFlex");
+    name2f.innerText = `${summoners[1].gameName} #${summoners[1].tagLine}`;
+    let lps2f = document.getElementById("span2LpsFlex");
+    lps2f.innerText = `${summoners[1].rankedStats[1].leaguePoints}`;
+    let tier2f = document.getElementById("twoRankFlex");
+    tier2f.innerText = `${summoners[1].rankedStats[1].tier} ${summoners[1].rankedStats[1].rank}`;
+    let wins2f = document.getElementById("twoWinsFlex");
+    wins2f.innerText = `W: ${summoners[1].rankedStats[1].wins}`;
+    let lossesf2 = document.getElementById("twoLossesFlex");
+    lossesf2.innerText = `L: ${summoners[1].rankedStats[1].losses}`;
+    let gamesf2 = document.getElementById("twoGamesFlex");
+    gamesf2.innerText = `G: ${(summoners[1].rankedStats[1].wins + summoners[1].rankedStats[1].losses)}`
+    let winRatef2 = (summoners[1].rankedStats[1].wins / (summoners[1].rankedStats[1].wins + summoners[1].rankedStats[1].losses)) * 100;
+    let wrf2 = document.getElementById("span2WRFlex");
+    wr1f.innerText = `${winRatef2.toFixed(2)}%`;
+    let floatWinRate2f = parseFloat(wrf2.innerText);
+    stylesIfNan(wrf2, floatWinRate2f);
+    let image2f = document.getElementById("twoImageTierFlex");
+    image2f.src = `static/resources/ranks/${summoners[1].rankedStats[1].tier}.png`;
+
+    console.log(summoners[0].rankedStats[1]);
+    console.log(summoners[1].rankedStats[1]);
+}
+
+
+function stylesIfNan(wr2, floatWinRate2) {
+    if (!isNaN(floatWinRate2)) {
+        if (floatWinRate2 < 50) {
+            wr2.style.color = "red";
+            wr2.style.textShadow = "1px 1px 1px black";
+        } else {
+            wr2.style.color = "green";
+            wr2.style.textShadow = "1px 1px 1px black";
+        }
+    } else {
+        wr2.innerText = "0%";
+        wr2.style.color = "#EBF4FA";
+    }
 }
 
 
@@ -178,6 +247,7 @@ async function getHiddenIds(summoner1, summoner2) {
 
         showSummonners(summoners);
         showSoloQStats(summoners);
+        showFlexQStats(summoners);
     } catch (error) {
         console.error("Error in getHiddenIds:", error);
     } finally {

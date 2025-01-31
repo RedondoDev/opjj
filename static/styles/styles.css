@@ -562,7 +562,7 @@ footer {
     height: 100vh;
 }
 
-#accountCard, #rankedCard {
+#accountCard, #rankedCard, #flexCard {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -578,16 +578,16 @@ footer {
     border: 2px solid rgba(255, 255, 255, 0.45);
 }
 
-#rankedCard img {
+#rankedCard img #flexCard img {
     width: 40%;
     object-fit: fill;
 }
 
-#oneSummAccount, #twoSummAccount, #oneSummRank, #twoSummRank {
+#oneSummAccount, #twoSummAccount, #oneSummRank, #twoSummRank, #oneSummFlex, #twoSummFlex {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: auto;
+    height: 100%;
     width: 40%;
     color: #EBF4FA;
     text-shadow: black 0.1em 0.1em 0.2em;
@@ -600,7 +600,7 @@ footer {
     border: 2px solid rgba(255, 255, 255, 0.55);
 }
 
-#sum1BigTop, #sum2BigTop {
+#sum1BigTop, #sum2BigTop, #sum1BigTopFlex, #sum2BigTopFlex {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -608,7 +608,7 @@ footer {
     margin-bottom: 30px;
 }
 
-#sum1TopRight, #sum2TopRight {
+#sum1TopRight, #sum2TopRight, #sum1TopRightFlex, #sum2TopRightFlex {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -623,43 +623,55 @@ footer {
     }
 }
 
-#sum1TopRightRank, #sum2TopRightRank {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-    font-size: 1.2vw;
-    text-align: end;
-    gap: 3%;
-    width: 100%;
-
-    h4 {
-        width: 100%;
-    }
-}
-
-
-#sum1BotLeft, #sum2BotLeft {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 1.2vw;
-}
-
-#sum1BigTopRank, #sum2BigTopRank {
+#sum1BigTopRank, #sum2BigTopRank, #sum1BigTopFlex, #sum2BigTopFlex {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: start;
     margin-bottom: 30px;
+    width: 100%;
+    height: 100%;
+}
+
+
+#sum1BotLeft, #sum2BotLeft, #sum1BotLeftFlex, #sum2BotLeftFlex {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.2vw;
+}
+
+#sum1TopRightRank, #sum2TopRightRank, #sum1TopRightFlex, #sum2TopRightFlex {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
     width: auto;
+    height: 100%;
+    gap: 5%;
+    text-align: end;
 
     h4 {
         width: 100%;
         font-size: 1.1vw;
     }
 
+    #span1Lps, #span2Lps, #span1LpsFlex, #span2LpsFlex {
+        font-size: 2vw;
+    }
 }
 
+#sum1BigBotRank, #sum2BigBotRank, #sum1BigBotFlex, #sum2BigBotFlex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+    width: 100%;
+    font-size: 1.1vw;
+}
+
+#oneImageTier, #twoImageTier, #oneImageTierFlex, #twoImageTierFlex {
+    width: 35%;
+    object-fit: fill;
+}
