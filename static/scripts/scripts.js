@@ -87,6 +87,7 @@ async function fetchSoloQStats(summoner) {
             let rankedStats = await response.json();
             if (rankedStats.length === 0) {
                 await addDefaultStats(summoner);
+                console.log(summoner.rankedStats[0]);
             } else {
                 rankedStats.forEach(stat => {
                     summoner.rankedStats.push(stat);
@@ -129,19 +130,22 @@ function showSummonners(summoners) {
 
 function showSoloQStats(summoners) {
     let name1 = document.getElementById("oneNameRank");
-    name1.innerText = `${summoners[0].gameName}`;
-    let tag1 = document.getElementById("oneTagRank");
-    tag1.innerText = `#${summoners[0].tagLine}`;
+    name1.innerText = `${summoners[0].gameName} #${summoners[0].tagLine}`;
     let lps1 = document.getElementById("oneLps");
     lps1.innerText = `${summoners[0].rankedStats[0].leaguePoints} LPs`;
-    let rank1 = document.getElementById("oneRank");
-    rank1.innerText = summoners[0].rankedStats[0].rank;
-    let tier1 = document.getElementById("oneTier");
-    tier1.innerText = summoners[0].rankedStats[0].tier;
-    let queue1 = document.getElementById("oneQueue");
-    queue1.innerText = summoners[0].rankedStats[0].queueType;
+    let tier1 = document.getElementById("oneRank");
+    tier1.innerText = `${summoners[0].rankedStats[0].tier} ${summoners[0].rankedStats[0].rank}`;
+    let wins1 = document.getElementById("oneWins");
+    wins1.innerText = `W: ${summoners[0].rankedStats[0].wins}`;
+    let losses1 = document.getElementById("oneLosses");
+    losses1.innerText = `L: ${summoners[0].rankedStats[0].losses}`;
+    let games1 = document.getElementById("oneGames");
+    games1.innerText = `T: ${(summoners[0].rankedStats[0].wins + summoners[0].rankedStats[0].losses)};`
+    let winRate = (summoners[0].rankedStats[0].wins / (summoners[0].rankedStats[0].wins + summoners[0].rankedStats[0].losses)) * 100;
+    let wr1 = document.getElementById("oneWR");
+    wr1.innerText = `W/R: ${winRate.toFixed(2)}%`;
     let image1 = document.getElementById("oneImageTier");
-    image1.src = `static/resources/ranks/${summoners[0].rankedStats[0].tier}.webp`;
+    image1.src = `static/resources/ranks/${summoners[0].rankedStats[0].tier}.png`;
 
     let name2 = document.getElementById("twoNameRank");
     name2.innerText = `${summoners[1].gameName}`;

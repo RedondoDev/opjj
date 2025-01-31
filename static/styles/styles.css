@@ -570,13 +570,17 @@ footer {
     width: 80%;
     height: 30vh;
     margin: 30px auto 0;
+}
 
-    img {
-        width: 35%;
-        border-radius: 50%;
-        border: 2px solid rgba(255, 255, 255, 0.45);
-    }
+#accountCard img {
+    width: 35%;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.45);
+}
 
+#rankedCard img {
+    width: 40%;
+    object-fit: fill;
 }
 
 #oneSummAccount, #twoSummAccount, #oneSummRank, #twoSummRank {
@@ -619,6 +623,23 @@ footer {
     }
 }
 
+#sum1TopRightRank, #sum2TopRightRank {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    font-size: 1.2vw;
+    text-align: end;
+    gap: 3%;
+    width: 100%;
+
+    h4 {
+        width: 100%;
+    }
+}
+
+
 #sum1BotLeft, #sum2BotLeft {
     display: flex;
     flex-direction: row;
@@ -627,6 +648,18 @@ footer {
     font-size: 1.2vw;
 }
 
-#oneImageTier, #twoImageTier {
-    width: 40%;
+#sum1BigTopRank, #sum2BigTopRank {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 30px;
+    width: auto;
+
+    h4 {
+        width: 100%;
+        font-size: 1.1vw;
+    }
+
 }
+
