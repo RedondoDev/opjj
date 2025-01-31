@@ -12,9 +12,9 @@ class Summoner {
     }
 }
 
+
 async function fetchPuuid(region, gameName, tagLine) {
-    const response = await fetch(`https://${region}.api.riotgames.com/riot/account/v1/accounts/by-riot-id/
-    ${gameName}/${tagLine}?api_key=${API_KEY}`);
+    const response = await fetch(`/api/fetch_puuid?region=${region}&gameName=${gameName}&tagLine=${tagLine}`);
     if (!response.ok) {
         response.text().then(text => console.error("Error response:", text));
         throw new Error(`Request failed with status ${response.status}`);
@@ -23,13 +23,14 @@ async function fetchPuuid(region, gameName, tagLine) {
     return data.puuid;
 }
 
+
 async function getRiotPuuids() {
-    let region1 = document.getElementById("region1").value;
-    let region2 = document.getElementById("region2").value;
-    let gameName1 = document.getElementById("gameName1").value;
-    let gameName2 = document.getElementById("gameName2").value;
-    let tagLine1 = document.getElementById("tagLine1").value;
-    let tagLine2 = document.getElementById("tagLine2").value;
+    let region1 = document.getElementById("region1").value.trim();
+    let region2 = document.getElementById("region2").value.trim();
+    let gameName1 = document.getElementById("gameName1").value.trim();
+    let gameName2 = document.getElementById("gameName2").value.trim();
+    let tagLine1 = document.getElementById("tagLine1").value.trim();
+    let tagLine2 = document.getElementById("tagLine2").value.trim();
 
     let summoner1 = new Summoner(region1, gameName1, tagLine1, "", "", "", "", "1");
     let summoner2 = new Summoner(region2, gameName2, tagLine2, "", "", "", "", "0");
@@ -46,8 +47,8 @@ async function getRiotPuuids() {
         alert("Request failed. Please check your inputs and try again.");
         return null;
     }
-
 }
+
 
 async function fetchHiddenIds(summoner) {
     const SUBREGIONS = {
@@ -55,9 +56,8 @@ async function fetchHiddenIds(summoner) {
         europe: ["euw1", "eun1", "tr1", "ru"],
         asia: ["kr", "jp1", "oc1"]
     };
-
     for (let subregion of SUBREGIONS[summoner.region.toLowerCase()]) {
-        const url = `https://${subregion}.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/${summoner.puuid}?api_key=${API_KEY}`;
+        const url = `/api/fetch_summoner?subregion=${subregion}&puuid=${summoner.puuid}`;
         try {
             const response = await fetch(url);
             if (response.ok) {
@@ -67,7 +67,7 @@ async function fetchHiddenIds(summoner) {
                 summoner.accountId = summonerData.accountId;
                 summoner.lvl = summonerData.summonerLevel;
                 summoner.profileIconId = summonerData.profileIconId;
-                summoner.region = subregion
+                summoner.region = subregion;
                 break;
             } else {
                 console.log(`Not found in ${subregion}, response code: ${response.status}`);
@@ -78,8 +78,9 @@ async function fetchHiddenIds(summoner) {
     }
 }
 
+
 async function fetchSoloQStats(summoner) {
-    const url = `https://${summoner.region}.api.riotgames.com/lol/league/v4/entries/by-summoner/${summoner.id}?api_key=${API_KEY}`;
+    const url = `/api/fetch_soloq_stats?region=${summoner.region}&summonerId=${summoner.id}`;
     try {
         const response = await fetch(url);
         if (response.ok) {
@@ -89,31 +90,6 @@ async function fetchSoloQStats(summoner) {
             } else {
                 rankedStats.forEach(stat => {
                     summoner.rankedStats.push(stat);
-                    // if (stat.queueType === "RANKED_SOLO_5x5") {
-                    //     summoner.rankedStats[0] = {
-                    //         tier: stat.tier,
-                    //         rank: stat.rank,
-                    //         leaguePoints: stat.leaguePoints,
-                    //         wins: stat.wins,
-                    //         losses: stat.losses,
-                    //         inactive: stat.inactive,
-                    //         freshBlood: stat.freshBlood,
-                    //         hotStreak: stat.hotStreak,
-                    //         queueType: stat.queueType
-                    //     };
-                    // } else {
-                    //     summoner.rankedStats[1] = {
-                    //         tier: stat.tier,
-                    //         rank: stat.rank,
-                    //         leaguePoints: stat.leaguePoints,
-                    //         wins: stat.wins,
-                    //         losses: stat.losses,
-                    //         inactive: stat.inactive,
-                    //         freshBlood: stat.freshBlood,
-                    //         hotStreak: stat.hotStreak,
-                    //         queueType: stat.queueType
-                    //     };
-                    // }
                 });
             }
             console.log(`Found ranked stats:`, summoner.rankedStats[0]);
@@ -124,6 +100,7 @@ async function fetchSoloQStats(summoner) {
         console.error(`Error fetching ranked stats:`, error);
     }
 }
+
 
 function showSummonners(summoners) {
     let name1 = document.getElementById("oneName");
@@ -148,6 +125,7 @@ function showSummonners(summoners) {
     let image2 = document.getElementById("twoImage");
     image2.src = `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/profile-icons/${summoners[1].profileIconId}.jpg`;
 }
+
 
 function showSoloQStats(summoners) {
     let name1 = document.getElementById("oneNameRank");
@@ -184,6 +162,7 @@ function showSoloQStats(summoners) {
     console.log(summoners[1].rankedStats[0]);
 }
 
+
 async function getHiddenIds(summoner1, summoner2) {
     let summoners = [summoner1, summoner2];
     try {
@@ -205,27 +184,28 @@ async function getHiddenIds(summoner1, summoner2) {
     }
 }
 
+
 async function addDefaultStats(summoner) {
     summoner.rankedStats[0] = {
-                    tier: "UNRANKED",
-                    rank: "",
-                    leaguePoints: "0",
-                    wins: 0,
-                    losses: 0,
-                    inactive: true,
-                    freshBlood: "",
-                    hotStreak: "",
-                    queueType: "RANKED_SOLO_5x5"
-                };
-                summoner.rankedStats[1] = {
-                    tier: "UNRANKED",
-                    rank: "",
-                    leaguePoints: "0",
-                    wins: 0,
-                    losses: 0,
-                    inactive: true,
-                    freshBlood: "",
-                    hotStreak: "",
-                    queueType: "RANKED_FLEX_5x5"
-                };
+        tier: "UNRANKED",
+        rank: "",
+        leaguePoints: "0",
+        wins: 0,
+        losses: 0,
+        inactive: true,
+        freshBlood: "",
+        hotStreak: "",
+        queueType: "RANKED_SOLO_5x5"
+    };
+    summoner.rankedStats[1] = {
+        tier: "UNRANKED",
+        rank: "",
+        leaguePoints: "0",
+        wins: 0,
+        losses: 0,
+        inactive: true,
+        freshBlood: "",
+        hotStreak: "",
+        queueType: "RANKED_FLEX_5x5"
+    };
 }
