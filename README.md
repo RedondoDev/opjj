@@ -16,7 +16,7 @@
 
 # opjj
 opjj is a web application that allows users to compare the statistics of two League of Legends summoners, including their ranked performance in both solo queue and flex queue.
-<br><br> Developed with modern web technologies, it utilizes the <a href="https://developer.riotgames.com/apis" target="_blank">Riot API</a> to retrieve accurate and up-to-date game data, offering a fast and user-friendly experience for players looking to analyze and compare their in-game performance.
+<br><br> Developed with modern web technologies, it utilizes the [Riot API](https://developer.riotgames.com/apis) to retrieve accurate and up-to-date game data, offering a fast and user-friendly experience for players looking to analyze and compare their in-game performance.
 <br><br> I hope you find it useful!
 
 ## Table of Contents
